@@ -1,0 +1,30 @@
+.cabecalho {
+  display: flex;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+.imagem_logo {
+  background-image: url("/public/imagens/logo.png");
+  width: 351px;
+  height: 117px;
+}
+
+.participante {
+  z-index: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .cabecalho {
+    flex-direction: column;
+    padding-top: 31px;
+    align-items: center;
+  }
+
+  .imagem_logo {
+    background-image: url("/public/imagens/logo-pequeno.png");
+    width: 235px;
+    height: 199px;
+    background-repeat: no-repeat;
+  }
+}
