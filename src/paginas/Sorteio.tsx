@@ -15,6 +15,10 @@ export default function Sorteio() {
     e.preventDefault()
     if (resultado.has(participanteDaVez)) {
       setAmigoSecreto(resultado.get(participanteDaVez)!)
+      setTimeout(() => {
+        setAmigoSecreto('')
+        setParticipanteDaVez('')
+      }, 5000)
     }
   }
   return (
@@ -29,12 +33,16 @@ export default function Sorteio() {
             value={participanteDaVez}
             onChange={e => setParticipanteDaVez(e.target.value)}
           >
+            <option>Selecione um participante</option>
             {participantes.map(participante => <option key={participante}>{participante}</option>)}
           </select>
-          <p>Clique em sortear para ver quem é seu amigo secreto!</p>
+
+          <p className={styles.texto}>Clique em sortear para ver quem é seu amigo secreto!</p>
           <button className={styles.botaoSortear}>Sortear</button>
         </form>
-        {amigoSecreto && <p role="alert">{amigoSecreto}</p>}
+
+        {amigoSecreto && <p className={styles.texto} role="alert">{amigoSecreto}</p>}
+
         <footer className={styles.sorteio}>
           <img src="/imagens/aviao.png" className={styles.aviao} alt="Um desenho de um avião de papel" />
         </footer>

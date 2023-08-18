@@ -3,6 +3,7 @@ import { RecoilRoot } from "recoil"
 import Sorteio from "./Sorteio"
 import { useListaDeParticipantes } from "state/hook/useListaDeParticipantes"
 import { useListaSorteada } from "state/hook/useListaSorteada"
+import { act } from "react-dom/test-utils"
 
 jest.mock('state/hook/useListaDeParticipantes', () => {
   return {
@@ -39,7 +40,7 @@ describe('Na pagina de sorteio', () => {
     </RecoilRoot>)
 
     const opcoes = screen.queryAllByRole('option')
-    expect(opcoes).toHaveLength(participantes.length)
+    expect(opcoes).toHaveLength(participantes.length + 1) //pq uma option ja vem de padrão
 
   })
 
@@ -63,5 +64,32 @@ describe('Na pagina de sorteio', () => {
     const amigoSecreto = screen.getByRole('alert')
 
     expect(amigoSecreto).toBeInTheDocument()
+  })
+
+  test('o amigo secreto sode depois do timeout', () => {
+    jest.useFakeTimers()
+    render(<RecoilRoot>
+      <Sorteio />
+    </RecoilRoot>)
+
+    const select = screen.getByPlaceholderText('Selecione o seu nome')
+    fireEvent.change(select, {
+      target: {
+        value: participantes[0]
+      }
+    })
+    const botao = screen.getByRole('button')
+    fireEvent.click(botao)
+
+    let amigoSecreto = screen.queryByRole('alert')
+    expect(amigoSecreto).toBeInTheDocument()
+
+    act(() => {
+      jest.runAllTimers()
+    })
+
+    amigoSecreto = screen.queryByRole('alert')
+    expect(amigoSecreto).toBeNull()
+
   })
 })
