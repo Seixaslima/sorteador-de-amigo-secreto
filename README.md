@@ -6,5 +6,5 @@ Esse projeto foi desenvolvido na aula de testes da alura, onde o objetivo era ap
 | --------------------- | -------------------------------------------------------------- |
 | :sparkles: Nome       | **Sorteador de Amigo Secreto**                                 |
 | :label: Tecnologias   | React, html, react-router, jest, Rocoil                        |
-| :rocket: URL          | https://url-deploy.com.br                                      |
+| :rocket: URL          | https://sorteador-de-amigo-secreto-rust.vercel.app/            |
 | :fire: Desafio        | https://cursos.alura.com.br/course/react-testando-componentes/ |
